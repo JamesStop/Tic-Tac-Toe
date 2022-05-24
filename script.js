@@ -1,14 +1,14 @@
 // CONST
 
-const boxesArray = [];
+
 
 
 
 
 //LETS
 
-let playerTurn = 'Player1';
-
+let playerTurn = 'player1';
+let boxesArray = [];
 
 
 
@@ -67,18 +67,24 @@ scoreBoard.addEventListener('click', incrementScore);
 //FUNCTIONS
 
 //actually add on the X and O
+
+function placeChoice(event) {
+	if (event.target.className == 'individual-box') {
+		addMarker(event.target.id);
+	}
+}
+
 function addMarker(id) {
     const span = document.createElement('span');
     span.setAttribute('class', 'marker');
     if (display[id].firstChild) {
         return;
     } else {
-      if (playerTurn == 'Player1') {
+      if (playerTurn == 'player1') {
           span.innerText = 'X';
-      } else if (playerTurn == 'Player2') {
+      } else if (playerTurn == 'player2') {
           span.innerText = 'O';
-      }
-      
+      }  
     }
     display[id].appendChild(span);
     determineWin(id, playerTurn);
@@ -86,21 +92,17 @@ function addMarker(id) {
 }
 
 function switchTurn(currentTurn) {
-    if (playerTurn == 'Player1') {
-        playerTurn = 'Player2'
-        turnDisplay.innerText = 'Player 2';
-    } else if (playerTurn == 'Player2') {
-        playerTurn = 'Player1';
-        turnDisplay.innerText = 'Player 1'
+    if (playerTurn == 'player1') {
+        playerTurn = 'player2'
+        turnDisplay.innerText = 'player 2';
+    } else if (playerTurn == 'player2') {
+        playerTurn = 'player1';
+        turnDisplay.innerText = 'player 1'
     }
 }
 
 
-function placeChoice(event) {
-    if (event.target.className == 'individual-box') {
-        addMarker(event.target.id);
-    }
-}
+
 
 
 function resetGame() {
@@ -109,6 +111,7 @@ function resetGame() {
         div.removeChild(div.firstChild);
         }
     });
+    boxesArray = [];
 }
 
 
@@ -137,6 +140,12 @@ function incrementScore(event) {
     }
 }
 
+function autoWinScore(player) {
+	score[player] += 1;
+	player1Score.innerText = score.player1;
+	player2Score.innerText = score.player2;
+}
+
 
 function determineWin(box, turn) {
     const arrayPosition = box.slice(-1);
@@ -145,50 +154,50 @@ function determineWin(box, turn) {
         if (boxesArray[1] == turn) {
             if (boxesArray[2] == turn) {
                 //something that player wins
-                console.log(`${turn} win`);
+                autoWinScore(turn);
             }
         } else if (boxesArray[4] == turn) {
             if (boxesArray[8] == turn) {
                 //win
-                console.log(`${turn} win`);
+                autoWinScore(turn);
             }
         } else if (boxesArray[3] == turn) {
             if (boxesArray[6] == turn) {
                 //win
-                console.log(`${turn} win`);
+                autoWinScore(turn);
             }
         }
     } else if (boxesArray[1] == turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[7] == turn) {
                 //win
-                console.log(`${turn} win`);
+                autoWinScore(turn);
             }
         }
     } else if (boxesArray[2] == turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[6] == turn) {
                 //win
-                console.log(`${turn} win`);
+                autoWinScore(turn);
             }
         } else if (boxesArray[5] == turn) {
             if (boxesArray[8] == turn) {
                 //win
-                console.log(`${turn} win`);
+                autoWinScore(turn);
             }
         }
     } else if (boxesArray[3] == turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[5] == turn) {
                 //win
-                console.log(`${turn} win`);
+                autoWinScore(turn);
             }
         }
     } else if (boxesArray[6] == turn) {
         if (boxesArray[7] == turn) {
             if (boxesArray[8] == turn) {
                 //win
-                console.log(`${turn} win`)
+                autoWinScore(turn);
             }
         }
     }
