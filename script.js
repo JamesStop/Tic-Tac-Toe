@@ -52,8 +52,9 @@ const score = {
 
 const resetButton = document.querySelector('.reset-button');
 
-
-
+const modal = document.querySelector('#modal');
+const modalText = document.querySelector('#modalText');
+const playAgain = document.querySelector('#play-again');
 
 //events
 
@@ -63,6 +64,7 @@ resetButton.addEventListener('click', resetGame);
 
 scoreBoard.addEventListener('click', incrementScore);
 
+playAgain.addEventListener('click', playGameAgain);
 
 //FUNCTIONS
 
@@ -154,51 +156,68 @@ function determineWin(box, turn) {
         if (boxesArray[1] == turn) {
             if (boxesArray[2] == turn) {
                 //something that player wins
-                autoWinScore(turn);
+                winStuff(turn);
             }
         } else if (boxesArray[4] == turn) {
             if (boxesArray[8] == turn) {
                 //win
-                autoWinScore(turn);
+                winStuff(turn);
             }
         } else if (boxesArray[3] == turn) {
             if (boxesArray[6] == turn) {
                 //win
-                autoWinScore(turn);
+                winStuff(turn);
             }
         }
     } else if (boxesArray[1] == turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[7] == turn) {
                 //win
-                autoWinScore(turn);
+                winStuff(turn);
             }
         }
     } else if (boxesArray[2] == turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[6] == turn) {
                 //win
-                autoWinScore(turn);
+                winStuff(turn);
             }
         } else if (boxesArray[5] == turn) {
             if (boxesArray[8] == turn) {
                 //win
-                autoWinScore(turn);
+                winStuff(turn);
             }
         }
     } else if (boxesArray[3] == turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[5] == turn) {
                 //win
-                autoWinScore(turn);
+                winStuff(turn);
             }
         }
     } else if (boxesArray[6] == turn) {
         if (boxesArray[7] == turn) {
             if (boxesArray[8] == turn) {
                 //win
-                autoWinScore(turn);
+                winStuff(turn);
             }
         }
     }
+}
+
+
+
+function winStuff(player) {
+    autoWinScore(player);
+    displayWinModal(player);
+}
+
+function displayWinModal(winner) {
+    modalText.innerText = `Congratulations ${winner}!`;
+    modal.classList.remove('hide');
+}
+
+function playGameAgain() {
+	resetGame();
+	modal.classList.add('hide');
 }
