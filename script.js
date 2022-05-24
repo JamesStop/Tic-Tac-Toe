@@ -1,6 +1,6 @@
 // CONST
 
-
+const boxesArray = [];
 
 
 
@@ -81,6 +81,7 @@ function addMarker(id) {
       
     }
     display[id].appendChild(span);
+    determineWin(id, playerTurn);
     switchTurn(playerTurn);
 }
 
@@ -133,5 +134,62 @@ function incrementScore(event) {
 		} else if (event.target.id == 'player2-minus') {
 			scoreNumber('player2', -1);
 		}
+    }
+}
+
+
+function determineWin(box, turn) {
+    const arrayPosition = box.slice(-1);
+    boxesArray[arrayPosition - 1] = turn;
+    if (boxesArray[0] == turn) {
+        if (boxesArray[1] == turn) {
+            if (boxesArray[2] == turn) {
+                //something that player wins
+                console.log(`${turn} win`);
+            }
+        } else if (boxesArray[4] == turn) {
+            if (boxesArray[8] == turn) {
+                //win
+                console.log(`${turn} win`);
+            }
+        } else if (boxesArray[3] == turn) {
+            if (boxesArray[6] == turn) {
+                //win
+                console.log(`${turn} win`);
+            }
+        }
+    } else if (boxesArray[1] == turn) {
+        if (boxesArray[4] == turn) {
+            if (boxesArray[7] == turn) {
+                //win
+                console.log(`${turn} win`);
+            }
+        }
+    } else if (boxesArray[2] == turn) {
+        if (boxesArray[4] == turn) {
+            if (boxesArray[6] == turn) {
+                //win
+                console.log(`${turn} win`);
+            }
+        } else if (boxesArray[5] == turn) {
+            if (boxesArray[8] == turn) {
+                //win
+                console.log(`${turn} win`);
+            }
+        }
+    } else if (boxesArray[3] == turn) {
+        if (boxesArray[4] == turn) {
+            if (boxesArray[5] == turn) {
+                //win
+                console.log(`${turn} win`);
+            }
+        }
+    } else if (boxesArray[6] == turn) {
+        if (boxesArray[7] == turn) {
+            if (boxesArray[8] == turn) {
+                //win
+                console.log(`${turn} win`)
+            }
+        }
     }
 }

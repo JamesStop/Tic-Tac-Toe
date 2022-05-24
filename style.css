@@ -95,6 +95,9 @@ main {
     height: 33%;
     width: 33%;
     background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #box1 {
@@ -146,4 +149,9 @@ main {
 #box9 {
     border-left: 1px solid black;
     border-top: 1px solid black;
+}
+
+
+.marker {
+    font-size: 5vw;
 }
