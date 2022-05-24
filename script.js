@@ -21,10 +21,12 @@ let playerTurn = 'Player1';
 
 //DOMS
 
+const scoreBoard = document.querySelector('.score-board');
+
 const player1Score = document.querySelector('#player1');
 const player2Score = document.querySelector('#player2');
 
-const turnDisplay = document.querySelector('.turn');
+const turnDisplay = document.querySelector('.turnText');
 
 
 const playerArea = document.querySelector('.tic-tac-toe-box');
@@ -43,6 +45,11 @@ const display = {
     box9: document.querySelector('#box9'),
 }
 
+const score = {
+    player1: 0,
+    player2: 0,
+}
+
 const resetButton = document.querySelector('.reset-button');
 
 
@@ -54,6 +61,7 @@ playerArea.addEventListener('click', placeChoice);
 
 resetButton.addEventListener('click', resetGame);
 
+scoreBoard.addEventListener('click', incrementScore);
 
 
 //FUNCTIONS
@@ -100,4 +108,30 @@ function resetGame() {
         div.removeChild(div.firstChild);
         }
     });
+}
+
+
+function scoreNumber(player, value) {
+    if ((score[player] + value) < 0) {
+        score[player] = 0;
+    } else {
+        score[player] += value;
+    }
+    player1Score.innerText = score.player1;
+    player2Score.innerText = score.player2;
+}
+
+
+function incrementScore(event) {
+    if (event.target.tagName == 'BUTTON') {
+        if (event.target.id == 'player1-add') {
+			scoreNumber('player1', 1);
+		} else if (event.target.id == 'player1-minus') {
+			scoreNumber('player1', -1);
+		} else if (event.target.id == 'player2-add') {
+			scoreNumber('player2', 1);
+		} else if (event.target.id == 'player2-minus') {
+			scoreNumber('player2', -1);
+		}
+    }
 }
