@@ -9,7 +9,7 @@
 
 let playerTurn = 'player1';
 let boxesArray = [];
-
+let win = false;
 
 
 //CLASS/OBJECTS
@@ -157,18 +157,21 @@ function determineWin(box, turn) {
         if (boxesArray[1] == turn) {
             if (boxesArray[2] == turn) {
                 //something that player wins
+                win = true;
                 winStuff(turn);
             }
         }
         if (boxesArray[4] == turn) {
             if (boxesArray[8] == turn) {
                 //win
+                win = true;
                 winStuff(turn);
             }
         }
         if (boxesArray[3] == turn) {
             if (boxesArray[6] == turn) {
                 //win
+                win = true;
                 winStuff(turn);
             }
         }
@@ -177,23 +180,23 @@ function determineWin(box, turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[7] == turn) {
                 //win
+                win = true;
                 winStuff(turn);
             }
         }
     }
     if (boxesArray[2] == turn) {
-        console.log('win')
         if (boxesArray[4] == turn) {
-            console.log('win')
             if (boxesArray[6] == turn) {
                 //win
+                win = true;
                 winStuff(turn);
-                console.log('win')
             }
         }
         if (boxesArray[5] == turn) {
             if (boxesArray[8] == turn) {
                 //win
+                win = true;
                 winStuff(turn);
             }
         }
@@ -202,6 +205,7 @@ function determineWin(box, turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[5] == turn) {
                 //win
+                win = true;
                 winStuff(turn);
             }
         }
@@ -210,9 +214,15 @@ function determineWin(box, turn) {
         if (boxesArray[7] == turn) {
             if (boxesArray[8] == turn) {
                 //win
+                win = true;
                 winStuff(turn);
             }
         }
+    }
+    if (((display.box1.firstElementChild) && (display.box2.firstElementChild) && (display.box3.firstElementChild) && (display.box4.firstElementChild) && (display.box5.firstElementChild) && (display.box6.firstElementChild) && (display.box7.firstElementChild) && (display.box8.firstElementChild) && (display.box9.firstElementChild) && win == false)) {
+        setTimeout(function () {
+			displayTieModal();
+		}, 1000);
     }
 }
 
@@ -228,6 +238,11 @@ function winStuff(player) {
 function displayWinModal(winner) {
     modalText.innerText = `Congratulations ${winner}!`;
     modal.classList.remove('hide');
+}
+
+function displayTieModal() {
+	modalText.innerText = `It's a tie!`;
+	modal.classList.remove('hide');
 }
 
 function playGameAgain() {
