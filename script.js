@@ -256,6 +256,7 @@ function determineWin(box, turn) {
 
 
 function winStuff(player) {
+    win = false;
     autoWinScore(player);
     setTimeout(function () {
         displayWinModal(player)
