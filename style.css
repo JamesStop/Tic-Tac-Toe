@@ -46,6 +46,18 @@ main {
     text-align: center;
 }
 
+.character-selector {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.character {
+    text-align: center;
+    width: 10%;
+    border: 1px solid black;
+    background-color: white;
+}
 
 
 .reset-button {

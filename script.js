@@ -11,6 +11,9 @@ let playerTurn = 'player1';
 let boxesArray = [];
 let win = false;
 
+let player1Character = 'X';
+let player2Character = 'O';
+
 
 //CLASS/OBJECTS
 
@@ -56,13 +59,18 @@ const modal = document.querySelector('#modal');
 const modalText = document.querySelector('#modalText');
 const playAgain = document.querySelector('#play-again');
 
+
+
+
+
+
 //events
 
 playerArea.addEventListener('click', placeChoice);
 
 resetButton.addEventListener('click', resetGame);
 
-scoreBoard.addEventListener('click', incrementScore);
+scoreBoard.addEventListener('click', changeCharacter);
 
 playAgain.addEventListener('click', playGameAgain);
 
@@ -72,23 +80,26 @@ playAgain.addEventListener('click', playGameAgain);
 
 function placeChoice(event) {
 	if (event.target.className == 'individual-box') {
-		addMarker(event.target.id);
+		addMarker(event.target.id); 
 	}
 }
 
 function addMarker(id) {
     const span = document.createElement('span');
     span.setAttribute('class', 'marker');
-    if (display[id].firstChild) {
+    if ((display[id].firstChild) || (win == true)) {
         
         return;
     } else {
       if (playerTurn == 'player1') {
-          span.innerText = 'X';
+          span.setAttribute('id', 'player1CharacterDisplayed')
+          span.innerText = player1Character;
       } else if (playerTurn == 'player2') {
-          span.innerText = 'O';
+          span.setAttribute('id', 'player2CharacterDisplayed');
+          span.innerText = player2Character;
       }  
     }
+    
     display[id].appendChild(span);
     determineWin(id, playerTurn);
     switchTurn(playerTurn);
@@ -105,7 +116,23 @@ function switchTurn(currentTurn) {
 }
 
 
-
+function changeCharacter(event) {
+    console.log(event.target)
+    if (event.target.className == "character") {
+        const newCharacter = event.target.innerText;
+        if (event.target.id == 'player1Characters') {
+            if (player2Character == newCharacter) {
+                return;
+            }
+			player1Character = newCharacter;
+		} else if (event.target.id == 'player2Characters') {
+			if (player1Character == newCharacter) {
+				return;
+			}
+            player2Character = newCharacter;
+		}
+    }
+}
 
 
 function resetGame() {
