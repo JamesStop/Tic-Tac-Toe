@@ -80,6 +80,7 @@ function addMarker(id) {
     const span = document.createElement('span');
     span.setAttribute('class', 'marker');
     if (display[id].firstChild) {
+        
         return;
     } else {
       if (playerTurn == 'player1') {
@@ -158,44 +159,54 @@ function determineWin(box, turn) {
                 //something that player wins
                 winStuff(turn);
             }
-        } else if (boxesArray[4] == turn) {
+        }
+        if (boxesArray[4] == turn) {
             if (boxesArray[8] == turn) {
                 //win
                 winStuff(turn);
             }
-        } else if (boxesArray[3] == turn) {
+        }
+        if (boxesArray[3] == turn) {
             if (boxesArray[6] == turn) {
                 //win
                 winStuff(turn);
             }
         }
-    } else if (boxesArray[1] == turn) {
+    }
+    if (boxesArray[1] == turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[7] == turn) {
                 //win
                 winStuff(turn);
             }
         }
-    } else if (boxesArray[2] == turn) {
+    }
+    if (boxesArray[2] == turn) {
+        console.log('win')
         if (boxesArray[4] == turn) {
+            console.log('win')
             if (boxesArray[6] == turn) {
                 //win
                 winStuff(turn);
+                console.log('win')
             }
-        } else if (boxesArray[5] == turn) {
+        }
+        if (boxesArray[5] == turn) {
             if (boxesArray[8] == turn) {
                 //win
                 winStuff(turn);
             }
         }
-    } else if (boxesArray[3] == turn) {
+    }
+    if (boxesArray[3] == turn) {
         if (boxesArray[4] == turn) {
             if (boxesArray[5] == turn) {
                 //win
                 winStuff(turn);
             }
         }
-    } else if (boxesArray[6] == turn) {
+    }
+    if (boxesArray[6] == turn) {
         if (boxesArray[7] == turn) {
             if (boxesArray[8] == turn) {
                 //win
@@ -209,7 +220,9 @@ function determineWin(box, turn) {
 
 function winStuff(player) {
     autoWinScore(player);
-    displayWinModal(player);
+    setTimeout(function () {
+        displayWinModal(player)
+    }, 1000);
 }
 
 function displayWinModal(winner) {

@@ -165,7 +165,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(176, 212, 228, 0.6);
 }
 
 .modal-inner {
@@ -177,10 +177,25 @@ main {
     flex-direction: column;
     border: 2px solid black;
     border-radius: 10%;
-    background-color: rgb(242, 180, 239);
+    background-color: rgb(0, 200, 200);
 }
 
 
 .hide {
     display: none;
+}
+
+
+
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+
+    /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+    -ms-user-select: none;
+    user-select: none;
 }
