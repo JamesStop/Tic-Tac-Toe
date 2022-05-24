@@ -29,6 +29,7 @@ const turnDisplay = document.querySelector('.turn');
 
 const playerArea = document.querySelector('.tic-tac-toe-box');
 
+const allBoxesDisplay = document.querySelectorAll('.individual-box')
 
 const display = {
     box1: document.querySelector('#box1'),
@@ -42,14 +43,17 @@ const display = {
     box9: document.querySelector('#box9'),
 }
 
-
+const resetButton = document.querySelector('.reset-button');
 
 
 
 
 //events
 
-playerArea.addEventListener('click', placeChoice)
+playerArea.addEventListener('click', placeChoice);
+
+resetButton.addEventListener('click', resetGame);
+
 
 
 //FUNCTIONS
@@ -66,16 +70,19 @@ function addMarker(id) {
       } else if (playerTurn == 'Player2') {
           span.innerText = 'O';
       }
+      
     }
     display[id].appendChild(span);
-    console.log('hi')
+    switchTurn(playerTurn);
 }
 
 function switchTurn(currentTurn) {
     if (playerTurn == 'Player1') {
         playerTurn = 'Player2'
+        turnDisplay.innerText = 'Player 2';
     } else if (playerTurn == 'Player2') {
         playerTurn = 'Player1';
+        turnDisplay.innerText = 'Player 1'
     }
 }
 
@@ -83,6 +90,14 @@ function switchTurn(currentTurn) {
 function placeChoice(event) {
     if (event.target.className == 'individual-box') {
         addMarker(event.target.id);
-        switchTurn(playerTurn);
     }
+}
+
+
+function resetGame() {
+    allBoxesDisplay.forEach(function(div) {
+        if (div.firstChild){ 
+        div.removeChild(div.firstChild);
+        }
+    });
 }
